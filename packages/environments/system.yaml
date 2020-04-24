@@ -188,8 +188,8 @@ sensor:
 
   - platform: filesize
     file_paths:
-      - /root/config/home-assistant_v2.db
-      - /root/config/home-assistant.log
+      - /config/home-assistant_v2.db
+      - /config/home-assistant.log
 
   - platform: template
     sensors:
