@@ -1,1 +1,1 @@
-# hassioconfig
+# hassconfig
