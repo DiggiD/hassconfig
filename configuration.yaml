@@ -4,4 +4,5 @@ homeassistant:
 
   packages: !include_dir_named packages
 
-  whitelist_external_dirs: [config]
+  whitelist_external_dirs: 
+    - /config
