@@ -52,7 +52,8 @@ automation:
       data_template:
         name: >-
           {% if is_state ('input_boolean.maintenance_mode' , 'on') %} dark_orange
-          {% elif ((now().hour == 20) or (now().hour > 7)) %} vintage
-          {% elif is_state('sensor.dark_outside','true') %} midnight
           {% elif is_state('binary_sensor.updater','true') %} sublimination
+          {% elif is_state('sensor.dark_outside','true') %} midnight
+          {% elif ((now().hour < 20) or (now().hour > 7)) %} vintage
           {% else %} default {% endif %}
+
