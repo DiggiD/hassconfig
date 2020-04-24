@@ -1,0 +1,24 @@
+homekit:
+  auto_start: false
+  filter:
+    include_domains:
+#      - sensor
+      - climate
+      - light
+    include_entities:
+      - switch.d_s_ac
+#    exclude_entities:
+#      - group.weather_overview
+#      - group.sysinfo
+
+
+automation:
+  - alias: Homekit Start
+    initial_state: 'on'
+    id: '09'
+    trigger:
+      platform: homeassistant
+      event: start
+    action:
+      - delay: 00:05
+      - service: homekit.start

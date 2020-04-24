@@ -1,0 +1,9 @@
+# stream:
+
+ffmpeg:
+  ffmpeg_bin: /usr/bin/ffmpeg
+
+camera:
+  platform: ffmpeg
+  name: BackDoor
+  input: !secret BackDoorCam

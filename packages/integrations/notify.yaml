@@ -1,0 +1,73 @@
+script:
+  notify:
+    sequence:
+      - service: script.message
+        data_template: !include ../../extras/notifier.yaml
+
+  message:
+    sequence:
+  #    - service: script.announce
+  #      data_template:
+  #        no_say: 1
+  #        media_player: '{{ media_player }}'
+  #        message: '{{ message }}'
+      - service: script.text
+        data_template:
+          who: '{{ who }}'
+          message: '{{ message }}'
+      - service: script.on_screen
+        data_template:
+          no_show: 1
+  #        no_show: '{{ no_show }}'
+          message: '{{ message }}'
+
+  #announce:
+  #  sequence:
+  #    - condition: template
+  #      value_template: "{{ no_say | length == 0 }}"
+  #    - condition: or
+  #      conditions:
+  #        - condition: time
+  #          after: '07:30:00'
+  #          before: '23:00:00'
+  #        - condition: state
+  #          entity_id: input_boolean.priority_message
+  #          state: 'on'
+  #    - service: media_player.volume_set
+  #      data_template:
+  #        entity_id: '{{ media_player }}'
+  #        volume_level: >
+  #          {% if now().hour < 7 or now().hour > 22 %} 0.2
+  #          {% elif now().hour > 7 or now().hour < 9 %} 0.3
+  #          {% else %} 0.4 {% endif %}
+  #    - service: media_player.volume_mute
+  #      data_template:
+  #        entity_id: '{{ media_player }}'
+  #        is_volume_muted: false
+
+  text:
+    sequence:
+      - condition: template
+        value_template: "{{who | length != 0 }}"
+      - service_template: '{{ who }}'
+        data_template:
+          message: "{{ message | replace('\n',' ') | replace('   ',' ') | replace('  ',' ') }}"
+          data:
+            keyboard:
+              - '/status'
+              - '/maintenance'
+
+  on_screen:
+    sequence:
+      - condition: template
+        value_template: "{{ no_show | length == 0}}"
+      - service: persistent_notification.create
+        data_template:
+          notification_id: "sys_info"
+          title: "System Information"
+          message: >
+            {% if is_state('persistent_notification.sys_info', 'notifying') %}
+              {{states.persistent_notification.sys_info.attributes.message}}
+              {{ now().strftime('%H:%M') }} -
+              {{ message | replace('\n',' ') | replace('   ',' ') | replace('  ',' ') }}
+            {% endif %}

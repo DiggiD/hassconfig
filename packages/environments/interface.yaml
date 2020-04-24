@@ -1,0 +1,58 @@
+frontend:
+  javascript_version: latest
+  themes: !include_dir_merge_named ../../extras/themes/
+
+input_boolean:
+  maintenance_mode:
+    name: Maintenance mode
+    icon: mdi:auto-fix
+
+  holiday_mode:
+    name: Holiday mode
+    icon: mdi:airplane
+
+  away_mode:
+    name: Away mode
+    icon: mdi:incognito
+
+
+alert:
+  maintenance_mode_alert:
+    name: Maintenance Mode has been on for a long time
+    done_message: Maintenance Mode de-activated
+    entity_id: input_boolean.maintenance_mode
+    repeat:
+      - 60
+    skip_first: true
+    notifiers:
+      - d
+
+automation:
+  - alias: Interface - Set UI theme
+    initial_state: 'on'
+    id: '11'
+    trigger:
+      - platform: homeassistant
+        event: start
+      - platform: state
+        entity_id:
+          - input_boolean.maintenance_mode
+          - sensor.dark_outside
+          - binary_sensor.updater
+
+  #      to: 'on'
+  #        - alarm_control_panel.alarm
+  #        {% if not is_state ('alarm_control_panel.alarm','disarmed') %} darkred
+      - platform: time
+        at: '20:00:00'
+      - platform: time
+        at: '07:00:00'
+    action:
+      service: frontend.set_theme
+      data_template:
+        name: >-
+          {% if is_state ('input_boolean.maintenance_mode' , 'on') %} dark_orange
+          {% elif ((now().hour == 20) or (now().hour > 7)) %} vintage
+          {% elif is_state('sensor.dark_outside','true') %} midnight
+          {% elif is_state('binary_sensor.updater','true') %} sublimination
+          {% else %} default {% endif %}

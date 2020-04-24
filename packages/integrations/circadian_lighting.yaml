@@ -1,0 +1,61 @@
+circadian_lighting:
+  max_colortemp: 6000  
+  min_colortemp: 2000
+  sunset_offset: 01:00:00 
+  transition: 120
+
+switch:
+  - platform: circadian_lighting
+    lights_rgb:
+      - light.wled_backlight
+    min_brightness: 15
+    initial_transition: 15
+    #sleep_entity: input_boolean.
+    #sleep_state: 'on'
+    #disable_entity:
+    #disable_state:
+    #sleep_colortemp: 1000
+    #sleep_brightness: 10
+
+
+automation:
+  - alias: Circadian Enabled
+    initial_state: 'on'
+    id: '28'
+    trigger:
+      - platform: numeric_state
+        entity_id: sun.sun
+        value_template: "{{ state.attributes.elevation }}"
+      # Can be a positive or negative number
+        below: 45.0
+      - platform: state
+        entity_id: sensor.darkoutside
+        to: 'true'
+    condition:
+      condition: state
+      entity_id: switch.circadian_lighting_circadian_lighting
+      state: 'off'
+    action:
+      - delay: 00:01
+      - service: homeassistant.turn_on
+        entity_id: switch.circadian_lighting_circadian_lighting
+  - alias: Circadian Disabled
+    initial_state: 'on'
+    id: '29'
+    trigger:
+      - platform: numeric_state
+        entity_id: sun.sun
+        value_template: "{{ state.attributes.elevation }}"
+      # Can be a positive or negative number
+        above: 45.0
+      - platform: state
+        entity_id: sensor.darkoutside
+        to: 'false'
+    condition:
+      condition: state
+      entity_id: switch.circadian_lighting_circadian_lighting
+      state: 'on'
+    action:
+      - delay: 00:01
+      - service: homeassistant.turn_off
+        entity_id: switch.circadian_lighting_circadian_lighting

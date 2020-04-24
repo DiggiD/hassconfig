@@ -1,0 +1,34 @@
+http:
+  base_url: https://daarka.duckdns.org
+
+speedtestdotnet:
+  monitored_conditions:
+    - ping
+    - download
+    - upload
+  server_id: 19081
+  scan_interval:    
+#    hours: 1
+    minutes: 15
+
+device_tracker:
+  - platform: nmap_tracker
+    hosts: 192.168.0.0/24
+    exclude: 192.168.0.200
+    home_interval: 10
+    interval_seconds: 30
+    consider_home: 0:10
+    new_device_defaults:
+      track_new_devices: true
+  
+  # - platform: bluetooth_tracker
+  # - platform: bluetooth_le_tracker
+  
+  - platform: iphonedetect
+    consider_home: 0:5
+    hosts:
+      iphone_d: 192.168.0.115
+      iphone_g: 192.168.0.117
+    new_device_defaults:
+      track_new_devices: true
+    

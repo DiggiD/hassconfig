@@ -1,0 +1,47 @@
+homeassistant:
+  name: Home
+  latitude: !secret lat
+  longitude: !secret lon
+  elevation: 11
+#  temperature_unit: C
+  unit_system: metric
+  time_zone: !secret TZ
+  auth_providers:
+    - type: homeassistant
+
+sun:
+sensor:
+  - platform: moon
+
+map:
+zone:
+  name: Home
+  latitude: !secret lat
+  longitude: !secret lon
+  radius: 10
+  icon: mdi:account-multiple
+
+config:
+# config_check:
+zeroconf:
+discovery:
+system_health:
+
+python_script:
+updater:
+
+recorder:
+  purge_keep_days: 2
+
+#history: !include extras/logger.yaml
+history:
+logbook:
+#logbook: !include extras/logger.yaml
+
+
+logger:
+#  default: info
+   default: warning
+#   logs:
+#      homeassistant.components.homekit: debug
+

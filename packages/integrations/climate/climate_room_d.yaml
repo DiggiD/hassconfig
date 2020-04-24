@@ -1,0 +1,115 @@
+climate:
+  - platform: mqtt
+    name: "D's AC"
+    modes:
+      - "off"
+      - "auto"
+      - "cool"
+      - "heat"
+      - "dry"
+      - "fan_only"
+    fan_modes:
+      - "Auto"
+      - "Min"
+      - "Low"
+      - "Medium"
+      - "High"
+      - "Max"
+    swing_modes:
+      - "Off"
+      - "Auto"
+      - "Highest"
+      - "High"
+      - "Middle"
+      - "Low"
+      - "Lowest"
+    power_command_topic: "ir_server/ac/cmnd/power"
+    mode_command_topic: "ir_server/ac/cmnd/mode"
+    mode_state_topic: "ir_server/ac/stat/mode"
+    temperature_command_topic: "ir_server/ac/cmnd/temp"
+    temperature_state_topic: "ir_server/ac/stat/temp"
+    fan_mode_command_topic: "ir_server/ac/cmnd/fanspeed"
+    fan_mode_state_topic: "ir_server/ac/stat/fanspeed"
+    swing_mode_command_topic: "ir_server/ac/cmnd/swingv"
+    swing_mode_state_topic: "ir_server/ac/stat/swingv"
+    min_temp: 16
+    max_temp: 32
+    temp_step: 1
+    retain: false
+
+  - platform: tasmota_irhvac
+    name: "D's irHVAC"
+    command_topic: "cmnd/tmt-dsacT/irhvac"
+    state_topic: "tele/tmt-dsacT/RESULT"
+    temperature_sensor: sensor.kitchen_temperature
+    protocol: "HITACHI_AC1"
+    min_temp: 18 #optional - default 16 int value
+    max_temp: 30 #optional - default 32 int value
+    target_temp: 25 #optional - default 26 int value
+    initial_operation_mode: "off" # optional - default "off" string value (one of the "supported_modes")
+    away_temp: 25 #optional - default 24 int value
+    precision: 1 #optional - default 1 int or float value. Can be set to 1, 0.5 or 0.1
+    supported_modes:
+      - "heat"
+      - "cool"
+      - "dry"
+      - "fan_only"
+      - "auto"
+      - "off" #Turns the AC off - Should be quoted
+      # Some devices have "auto" and "fan_only" chaned
+      # If following two lines are uncommented, "auto" and "fan" shoud be commented
+      #- auto_fan_only #if remote shows fan but tasmota says auto
+      #- fan_only_auto #if remote shows auto but tasmota says fan
+    supported_fan_speeds:
+      # Some devices say max,but it is high, and auto which is max
+      # If you uncomment the following two, you have to comment high and max
+      # - auto_max #woud become max
+      # - max_high #would become high
+      #- on
+      #- off
+      - low
+      - "medium"
+      - "high"
+      #- middle
+      #- focus
+      #- diffuse
+      #- "min"
+      #- "max"
+      - auto
+    supported_swing_list:
+      - "off"
+      - "vertical" #up to down
+      # - horizontal # Left to right
+      # - both
+    default_quiet_mode: "Off" #optional - default "Off" string value
+    default_turbo_mode: "Off" #optional - default "Off" string value
+    default_econo_mode: "Off" #optional - default "Off" string value
+    hvac_model: "2" #optional - default "1" string value
+    celsius_mode: "On" #optional - default "On" string value
+    default_light_mode: "Off" #optional - default "Off" string value
+    default_filter_mode: "Off" #optional - default "Off" string value
+    default_clean_mode: "Off" #optional - default "Off" string value
+    default_beep_mode: "Off" #optional - default "Off" string value
+    default_sleep_mode: "-1" #optional - default "-1" string value
+
+
+sensor:
+  - platform: mqtt
+    state_topic: “tele/tmta-dsac/SENSOR”
+    name: "D's Room - Temperature"
+    icon: mdi:thermometer
+    availability_topic: “tele/tmta-dsac/SENSOR”
+    unit_of_measurement: °C
+    value_template: '{{ value_json["DHT11"].Temperature }}'
+    payload_available: “Online”
+    payload_not_available: “Offline”
+
+  - platform: mqtt
+    state_topic: “tele/tmta-dsac/SENSOR”
+    name: "D's Room - Humidity"
+    icon: mdi:water-percent
+    availability_topic: “tele/tmta-dsac/SENSOR”
+    value_template: '{{ value_json["DHT11"].Humidity }}'
+    unit_of_measurement: ‘%’
+    payload_available: “Online”
+    payload_not_available: “Offline”

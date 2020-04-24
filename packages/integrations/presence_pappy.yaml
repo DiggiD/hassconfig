@@ -1,0 +1,18 @@
+counter:
+  pappy_loo_trips:
+    step: 1
+    restore: true
+
+automation:
+  - id: 'count_loo_trips'
+    initial_state: 'on'
+    alias: Count Pappy's Loo Trips
+    trigger:
+      platform: state
+      entity_id: device_tracker.tmta_pappy_wc1
+      to: 'home'
+    action:
+      service: counter.increment
+      entity_id: counter.pappy_loo_trips
+
+##///add daily reset counter automation///##

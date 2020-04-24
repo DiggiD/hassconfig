@@ -1,0 +1,23 @@
+
+sensor:
+  - platform: template
+    sensors:
+      dark_outside:
+        value_template: >-
+          {% if (states.sun.sun.attributes.elevation|int < 3) %}true
+          {% else %} false {% endif %}
+         # {% elif ((states.sun.sun.attributes.elevation|int < 4.5) ) %}true
+         #{% elif ((states.sun.sun.attributes.elevation|int < 6) ) %}true
+          
+
+      bad_weather:
+        value_template: >-
+          {% if state_attr('weather.rdk', 'temperature')|int > 38 %} heat_wave
+          {% elif ((state_attr('weather.rdk', 'temperature')|int < 25) and (state_attr('weather.rdk', 'humidity')|int > 99)
+            and (state_attr('weather.rdk', 'wind_speed')|int > 40)) %} heavy_rain
+          {% else %} {{(states("weather.rdk"))}} {% endif %}
+
+
+# abs(elevation/10) * ( (elevation/10) + (1- (cloudiness/100)))
+
+# where 10 - your local threshold for sunset.

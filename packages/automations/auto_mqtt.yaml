@@ -1,0 +1,12 @@
+automation:
+  - id: 'get-tmta-mqtt-states'
+    alias: Gather all Tasmota MQTT states
+    initial_state: 'on'
+    trigger:
+      platform: homeassistant
+      event: start
+    action:
+      - service: mqtt.publish
+        data:
+          topic: "cmnd/tasmotas/backlog"
+          payload: "power1 ;sensor ;state "

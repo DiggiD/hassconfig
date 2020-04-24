@@ -1,0 +1,70 @@
+####### LIGHTS ##########
+#########################
+
+####### KITCHEN #########
+
+light:
+  - platform: mqtt
+    name: "Bar Light"
+    state_topic: "stat/tmta-bar/POWER"
+    command_topic: "cmnd/tmta-bar/POWER"
+    value_template: '{{ value_json["POWER"] }}'
+    qos: 1
+    
+
+####### LIVING ROOM ######
+
+  - platform: mqtt
+    name: "Display Light"
+    state_topic: "stat/tmta-display/POWER"
+    command_topic: "cmnd/tmta-display/POWER"
+   # value_template: '{{ value_json["POWER"] }}'
+    payload_on: "ON"
+    payload_off: "OFF"
+    qos: 1
+    
+
+####### PAPPY'S ROOM ######
+
+  - platform: mqtt
+    name: "WC Light"
+    state_topic: "stat/tmta-pappy_wc1/POWER"
+    command_topic: "cmnd/tmta-pappy_wc1/POWER"
+    #state_value_template: '{{ value_json["POWER"] }}'
+    payload_on: "ON"
+    payload_off: "OFF"
+    qos: 1
+    
+
+
+####### D's ROOM ######
+
+  - platform: mqtt
+    name: "D's Lantern"
+    state_topic: "stat/tmta-dslantern/POWER"
+    command_topic: "cmnd/tmta-dslantern/POWER"
+#    #state_value_template: '{{ value_json["POWER"] }}'
+    payload_on: "ON"
+    payload_off: "OFF"
+    qos: 1
+    retain: false
+
+  - platform: mqtt
+    name: "Loo Main Light"
+    state_topic: "stat/tmta-d_wc1/POWER"
+    command_topic: "cmnd/tmta-d_wc1/POWER"
+    #state_value_template: '{{ value_json["POWER"] }}'
+    payload_on: "ON"
+    payload_off: "OFF"
+    qos: 1
+    
+
+  - platform: mqtt
+    name: "Loo Mirror Light"
+    state_topic: "stat/tmta-d_wc2/POWER"
+    command_topic: "cmnd/tmta-d_wc2/POWER"
+    #state_value_template: '{{ value_json["POWER"] }}'
+    payload_on: "ON"
+    payload_off: "OFF"
+    qos: 1
+    

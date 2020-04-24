@@ -1,0 +1,8 @@
+sensor.home_status:
+  icon: mdi:home-map-marker
+# person.d:
+#   'entity_picture: ': /local/d.jpg
+# person.g:
+#   'entity_picture:': /local/g.jpg
+device_tracker.b0_4e_26_c2_89_38:
+  friendly_name: Router-Archer1200

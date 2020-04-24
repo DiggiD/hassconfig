@@ -1,0 +1,149 @@
+group:
+  d_presence:
+    entities:
+      - device_tracker.ds_iphone
+      - device_tracker.iphone_d
+  g_presence:
+    entities:
+#      - device_tracker.gs_iphone
+      - device_tracker.iphone_g
+  presence:
+    entities:
+      - group.d_presence
+      - group.g_presence
+      - person.pappy
+
+sensor:
+  - platform: template
+    sensors:
+      home_status:
+        friendly_name: 'Home status'
+        value_template: >-
+          {% if is_state('group.presence' , 'home') %}Occupied
+          {% else %} Unoccupied {% endif %}
+      d_presence:
+        value_template: >-
+          {% if is_state('group.d_presence', 'home') %}
+            Home
+          {% elif is_state('device_tracker.ds_iphone', 'not_home') %}
+            Away
+          {% else %}
+            {{ states('device_tracker.dsiphone') }}
+          {% endif %}
+      g_presence:
+        value_template: >-
+          {% if is_state('group.g_presence', 'home') %}
+            Home
+          {% elif is_state('device_tracker.gs_iphone', 'not_home') %}
+            Away
+          {% else %}
+            {{ states('device_tracker.gsiphone') }}
+          {% endif %}
+
+      d_last_changed:
+        entity_id: sensor.time
+        value_template: >-
+          {%- set time = (as_timestamp(now()) - 
+          as_timestamp(states.person.d.last_changed)) | int %}
+          {%- set minutes = ((time % 3600) // 60) %}
+          {%- set hours = ((time % 86400) // 3600) %}
+          {%- set days = (time // 86400) %}
+          {% if time <= 60 %} 0m
+          {% elif time <= 3600 %} {{ minutes }}m
+          {% elif time <= 86400 %} {{ hours }}h
+          {% elif time > 86400 %} {{ days }}d 
+          {% endif %}
+      g_last_changed:
+        entity_id: sensor.time
+        value_template: >-
+          {%- set time = (as_timestamp(now()) - 
+          as_timestamp(states.person.g.last_changed)) | int %}
+          {%- set minutes = ((time % 3600) // 60) %}
+          {%- set hours = ((time % 86400) // 3600) %}
+          {%- set days = (time // 86400) %}
+          {% if time <= 60 %} 0m
+          {% elif time <= 3600 %} {{ minutes }}m
+          {% elif time <= 86400 %} {{ hours }}h
+          {% elif time > 86400 %} {{ days }}d 
+          {% endif %}
+
+#########               ##########
+#########  AUTOMATIONS  ##########
+##################################
+
+automation:
+  - alias: Occupancy - Return home
+    initial_state: 'on'
+    id: '12'
+    trigger:
+      platform: state
+      entity_id: group.presence
+      to: 'Occupied'
+    action:
+      service: homeassistant.turn_off
+      entity_id:
+        - input_boolean.holiday_mode
+        - input_boolean.away_mode
+
+  - alias: Occupancy - Nobody home
+    initial_state: 'on'
+    id: '13'
+    trigger:
+      platform: state
+      entity_id: sensor.home_status
+      to: 'Unoccupied'
+      for:
+        hours: 3
+    action:
+      - service: homeassistant.turn_off
+        entity_id:
+          - group.all_lights
+      - service: homeassistant.turn_on
+        entity_id:
+          - input_boolean.away_mode
+  #        - script.empty_bedroom
+
+  - alias: Occupancy - Holiday Mode
+    initial_state: 'on'
+    id: '14'
+    trigger:
+      platform: state
+      entity_id: input_boolean.away_mode
+      to: 'on'
+      for:
+        hours: 48
+    action:
+      - service: homeassistant.turn_on
+        entity_id: input_boolean.holiday_mode
+      - service: homeassistant.turn_off
+        entity_id: input_boolean.away_mode
+
+  - alias: Occupancy - Trackable device detected
+    initial_state: 'on'
+    id: '15'
+    trigger:
+      platform: event
+      event_type: device_tracker_new_device
+    action:
+      service: script.notify
+      data:
+        tell: d
+        message: 'New trackable device detected'
+
+  - alias: Occupancy - Verify ios D
+    initial_state: 'on'
+    id: '16'
+    trigger:
+      platform: time_pattern
+      hours: '/1'
+  #    seconds: 00
+    condition:
+      - condition: time
+        after: '08:00:00'
+        before: '23:00:00'
+      - condition: template
+        value_template:  "{{ as_timestamp(now()) - as_timestamp(states.device_tracker.dsiphone.last_updated) > (61*60) }}"
+    action:
+      service: notify.d
+      data:
+        message: "request_location_update"

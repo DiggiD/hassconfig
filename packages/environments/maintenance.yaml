@@ -1,0 +1,67 @@
+script:
+  quick_reboot:
+    alias: Reboot rD [PI]
+    sequence:
+      - service: homeassistant.turn_on
+        entity_id: input_boolean.maintenance_mode
+      - service: persistent_notification.create
+        data:
+          notification_id: "reboot_alert"
+          title: "PI"
+          message: "rPI REBOOTING"
+      - delay: 00:00:02
+      - service: hassio.host_reboot
+      
+
+  quick_restart:
+    alias: Restart HA
+    sequence:
+      - service: homeassistant.turn_on
+        entity_id: input_boolean.maintenance_mode
+      - service: persistent_notification.create
+        data:
+          notification_id: "restart_alert"
+          title: "Hass.io"
+          message: "HASS RESTARTING"
+      - delay: 00:00:02
+      - service: homeassistant.restart
+      
+
+  hass_config_check:
+    alias: HA Config Check
+    sequence:
+      - service: homeassistant.turn_on
+        entity_id: input_boolean.maintenance_mode
+      - service: persistent_notification.create
+        data:
+          notification_id: "upgrade_alert"
+          title: "Hass.io"
+          message: "HASS Config is being Checked!"
+      - delay: 00:00:02
+      - service: config_check.run
+      - service: script.notify
+        data:
+          no_say: 1
+          tell: d
+          call_upgrade: 1
+      
+
+
+  hass_config_reload:
+    alias: HA Config Reload
+    sequence: 
+      - service: homeassistant.turn_on
+        entity_id: input_boolean.maintenance_mode
+      - service: persistent_notification.create
+        data:
+          notification_id: "upgrade_alert"
+          title: "Hass.io"
+          message: "HASS Core Config Reloading"
+      - delay: 00:00:02
+      - service: homeassistant.reload_core_config
+      - service: script.notify
+        data:
+          no_say: 1
+          tell: d
+          call_upgrade: 1
+      
