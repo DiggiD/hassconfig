@@ -24,6 +24,6 @@ action:
       {% if is_state ('input_boolean.maintenance_mode' , 'on') %} dark_orange
       {% elif is_state('binary_sensor.updater','true') %} sublimination
       {% elif is_state('sensor.dark_outside','true') %} midnight
-      {% elif ((now().hour > 19) or (now().hour < 7)) %} amoled
-      {% elif ((now().hour < 19) or (now().hour > 7)) %} vintage
+      {% elif ((now().hour > 0) or (now().hour < 7)) %} amoled
+      {% elif is_state('sensor.dark_outside','false') %} vintage
       {% else %} default {% endif %}

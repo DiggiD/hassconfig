@@ -1,6 +1,6 @@
 alias: Shutdown Notification
 initial_state: 'on'
-id: 34d0d19e-a535-4067-812d-5b9f071ccfc1
+id: f7290ebb-c066-4bf5-8692-8c31187f2b78
 trigger:
   platform: homeassistant
   event: shutdown

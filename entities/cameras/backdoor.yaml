@@ -5,5 +5,5 @@
 #
 
 platform: ffmpeg
-name: BackDoor
+name: backdoorcam
 input: !secret BackDoorCam

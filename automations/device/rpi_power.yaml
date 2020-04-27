@@ -1,5 +1,6 @@
 id: 03224c5c-3342-44f0-a75b-3669197fbed0
 alias: Power Problem Notification
+initial_state: 'on'
 trigger:
 - platform: numeric_state
   entity_id: sensor.rpi_power_status
@@ -20,4 +21,4 @@ action:
 - service: ifttt.trigger
   data_template:
     event: Hass.io
-    value1: "RPI Power reported {{ states.sensor.rpi_power_status.state }}."
+    value1: 'RPI Power reported {{ states.sensor.rpi_power_status.state }}.'
