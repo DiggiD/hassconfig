@@ -15,7 +15,7 @@ input_boolean:
     name: Away mode
     icon: mdi:incognito
 
-
+ 
 alert:
   maintenance_mode_alert:
     name: Maintenance Mode has been on for a long time

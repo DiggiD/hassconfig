@@ -1,0 +1,15 @@
+---
+# Light: Display
+#
+# This light controls the Display light.
+#
+# https://www.home-assistant.io/integrations/light/
+#
+platform: mqtt
+name: "Display Light"
+state_topic: "stat/tmta-display/POWER"
+command_topic: "cmnd/tmta-display/POWER"
+# value_template: '{{ value_json["POWER"] }}'
+payload_on: "ON"
+payload_off: "OFF"
+qos: 1

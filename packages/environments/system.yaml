@@ -5,6 +5,7 @@ sensor:
       - 'time'
  #     - 'time_utc'
 
+
   - platform: systemmonitor
     resources:
       - type: last_boot
@@ -186,9 +187,9 @@ sensor:
             mdi:checkbox-blank-outline
           {% endif %}
 
-  # - platform: filesize
-  #   file_paths:
-  #     - /config/home-assistant.log
+  - platform: filesize
+    file_paths:
+      - /config/home-assistant.log
   
   - platform: sql
     db_url: !secret mariadb_url
@@ -210,6 +211,7 @@ sensor:
           {% else %}
             unknown
           {% endif %}
+
 
 
 

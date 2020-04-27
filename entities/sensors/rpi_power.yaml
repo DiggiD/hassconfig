@@ -1,0 +1,8 @@
+---
+# The rpi_power sensor platform.
+# Using it for extracting host device power parameters.
+#
+# https://www.home-assistant.io/integrations/template/
+#
+platform: rpi_power
+text_state: true

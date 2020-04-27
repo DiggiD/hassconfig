@@ -1,0 +1,16 @@
+message:
+  sequence:
+#    - service: script.announce
+#      data_template:
+#        no_say: 1
+#        media_player: '{{ media_player }}'
+#        message: '{{ message }}'
+    - service: script.text
+      data_template:
+        who: '{{ who }}'
+        message: '{{ message }}'
+    - service: script.on_screen
+      data_template:
+        no_show: 1
+  #        no_show: '{{ no_show }}'
+        message: '{{ message }}'

@@ -1,0 +1,21 @@
+---
+# The template sensor platform.
+# Using it for calculatin host device cpu load.
+#
+# https://www.home-assistant.io/integrations/template/
+#
+platform: template
+sensors:
+  average_load:
+    friendly_name: Average load
+    unit_of_measurement: '%'
+    value_template: >-
+      {% set load1 = states('sensor.load_1m') | float(-1) %}
+      {% set load5 = states('sensor.load_5m') | float(-1) %}
+      {% set load15 = states('sensor.load_15m') | float(-1) %}
+      {% if load1 > 0 and load5 > 0 and load15 > 0 %}
+        {% set load1f = '{0:0.2f}'.format(load1) %}
+        {% set load5f = '{0:0.2f}'.format(load5) %}
+        {% set load15f = '{0:0.2f}'.format(load15) %}
+        {{ load1f }} {{ load5f }} {{ load15f }}
+      {% endif %}

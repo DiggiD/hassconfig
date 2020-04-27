@@ -1,0 +1,13 @@
+---
+# The sql sensor platform.
+# Using it for querying hassio database.
+#
+# https://www.home-assistant.io/integrations/filesize/
+#
+platform: sql
+db_url: !secret mariadb_url
+queries:
+  - name: DB size
+    query: 'SELECT table_schema "homeassistant", Round(Sum(data_length + index_length) / 1073741824, 3) "value" FROM information_schema.tables WHERE table_schema="homeassistant" GROUP BY table_schema;'
+    column: 'value'
+    unit_of_measurement: GB

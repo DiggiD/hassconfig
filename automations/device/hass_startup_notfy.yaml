@@ -1,0 +1,11 @@
+alias: Startup Notification
+initial_state: 'on'
+id: 1daa40db-6ffe-4a42-9888-b9ee14c3086e
+trigger:
+  platform: homeassistant
+  event: start
+action:
+  service: ifttt.trigger
+  data:
+    event: Hass.io
+    value1: 'I am Up!'

@@ -1,0 +1,16 @@
+---
+# The template sensor platform.
+# Using it for extracting host device uptime.
+#
+# https://www.home-assistant.io/integrations/template/
+#
+platform: template
+sensors:
+  hass_version:
+    value_template: "{%- if states.sensor.hass_version_upstream.state == states.sensor.hass_version_installed.state-%}{{states.sensor.hass_version_installed.state}} {% else %}{{states.sensor.hass_version_upstream.state}} Available{% endif%}"
+    icon_template: >-
+      {% if states.sensor.hass_version_upstream.state == states.sensor.hass_version_installed.state %}
+        mdi:checkbox-marked
+      {% else %}
+        mdi:checkbox-blank-outline
+      {% endif %}

@@ -13,6 +13,7 @@ script:
       - service: hassio.host_reboot
       
 
+
   quick_restart:
     alias: Restart HA
     sequence:

@@ -1,0 +1,21 @@
+alias: sleep
+initial_state: 'on'
+id: aab0e4cc-9c58-420a-a61d-42fe53516e17
+trigger:
+  - platform: numeric_state
+    entity_id: sun.sun
+    value_template: "{{ state.attributes.elevation }}"
+    # Can be a positive or negative number
+    above: 3.0
+  - platform: state
+    entity_id: sensor.dark_outside
+    to: 'false'
+  - platform: time
+    at: '00:00:00'
+condition:
+  condition: state
+  entity_id: light.d_s_lantern
+  state: 'on'
+action:
+  - service: homeassistant.turn_off
+    entity_id: light.d_s_lantern

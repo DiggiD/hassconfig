@@ -1,0 +1,9 @@
+---
+# The filesize sensor platform.
+# Using it for reporting size of particular file.
+#
+# https://www.home-assistant.io/integrations/filesize/
+#
+platform: filesize
+file_paths:
+  - /config/home-assistant.log

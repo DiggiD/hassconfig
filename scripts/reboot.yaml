@@ -1,0 +1,12 @@
+quick_reboot:
+  alias: Reboot rD [PI]
+  sequence:
+    - service: homeassistant.turn_on
+      entity_id: input_boolean.maintenance_mode
+    - service: persistent_notification.create
+      data:
+        notification_id: "reboot_alert"
+        title: "PI"
+        message: "rPI REBOOTING"
+    - delay: 00:00:02
+    - service: hassio.host_reboot

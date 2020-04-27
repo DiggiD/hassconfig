@@ -1,0 +1,7 @@
+---
+# The breaking_changes component reports total
+# upstream changes that may break your config
+#
+# https://www.home-assistant.io/integrations/breaking_changes/
+#
+breaking_changes: ~

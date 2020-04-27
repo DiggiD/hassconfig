@@ -1,0 +1,10 @@
+---
+# The uptime sensor platform.
+# Using it for extracting Hassio uptime.
+#
+# https://www.home-assistant.io/integrations/template/
+#
+platform: uptime
+name: Uptime
+scan_interval: 60
+unit_of_measurement: hours

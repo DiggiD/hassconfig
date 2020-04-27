@@ -1,0 +1,12 @@
+---
+# The template sensor platform.
+# check if its dark outside based on sunrise and sunset times
+#
+# https://www.home-assistant.io/integrations/template/
+#
+platform: template
+sensors:
+  dark_outside:
+    value_template: >-
+      {% if (states.sun.sun.attributes.elevation|int < 3) %}true
+      {% else %} false {% endif %}

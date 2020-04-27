@@ -1,0 +1,18 @@
+hass_config_reload:
+  alias: HA Config Reload
+  sequence: 
+    - service: homeassistant.turn_on
+      entity_id: input_boolean.maintenance_mode
+    - service: persistent_notification.create
+      data:
+        notification_id: "upgrade_alert"
+        title: "Hass.io"
+        message: "HASS Core Config Reloading"
+    - delay: 00:00:02
+    - service: homeassistant.reload_core_config
+    - service: script.notify
+      data:
+        no_say: 1
+        tell: d
+        call_upgrade: 1
+    

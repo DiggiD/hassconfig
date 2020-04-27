@@ -1,0 +1,9 @@
+alias: Homekit Startup
+initial_state: 'on'
+id: 26a4fb9c-27d2-4718-9eb4-7ca00723a08d
+trigger:
+  platform: homeassistant
+  event: start
+action:
+  - delay: 00:05
+  - service: homekit.start

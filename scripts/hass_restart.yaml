@@ -1,0 +1,12 @@
+quick_restart:
+  alias: Restart HA
+  sequence:
+    - service: homeassistant.turn_on
+      entity_id: input_boolean.maintenance_mode
+    - service: persistent_notification.create
+      data:
+        notification_id: "restart_alert"
+        title: "Hass.io"
+        message: "HASS RESTARTING"
+    - delay: 00:00:02
+    - service: homeassistant.restart

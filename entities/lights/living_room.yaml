@@ -1,0 +1,12 @@
+---
+# Light group: livingroom
+#
+# This light controls all the other lights in my livingroom
+#
+# https://www.home-assistant.io/integrations/light.group/
+#
+platform: group
+name: livingroom
+entities:
+  - light.display_light
+

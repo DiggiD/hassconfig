@@ -1,0 +1,13 @@
+---
+# Light: Bar
+#
+# This light controls the Bar Light.
+#
+# https://www.home-assistant.io/integrations/light/
+#
+platform: mqtt
+name: "Bar Light"
+state_topic: "stat/tmta-bar/POWER"
+command_topic: "cmnd/tmta-bar/POWER"
+value_template: '{{ value_json["POWER"] }}'
+qos: 1

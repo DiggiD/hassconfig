@@ -1,0 +1,11 @@
+text:
+  sequence:
+    - condition: template
+      value_template: "{{who | length != 0 }}"
+    - service_template: '{{ who }}'
+      data_template:
+        message: "{{ message | replace('\n',' ') | replace('   ',' ') | replace('  ',' ') }}"
+        data:
+          keyboard:
+            - '/status'
+            - '/maintenance'

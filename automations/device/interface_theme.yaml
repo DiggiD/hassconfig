@@ -1,0 +1,29 @@
+alias: Interface - Set UI theme
+initial_state: 'on'
+id: a39b243e-d298-478f-aded-3a51b738e629
+trigger:
+  - platform: homeassistant
+    event: start
+  - platform: state
+    entity_id:
+      - input_boolean.maintenance_mode
+      - sensor.dark_outside
+      - binary_sensor.updater
+
+#      to: 'on'
+#        - alarm_control_panel.alarm
+#        {% if not is_state ('alarm_control_panel.alarm','disarmed') %} darkred
+  - platform: time
+    at: '20:00:00'
+  - platform: time
+    at: '07:00:00'
+action:
+  service: frontend.set_theme
+  data_template:
+    name: >-
+      {% if is_state ('input_boolean.maintenance_mode' , 'on') %} dark_orange
+      {% elif is_state('binary_sensor.updater','true') %} sublimination
+      {% elif is_state('sensor.dark_outside','true') %} midnight
+      {% elif ((now().hour > 19) or (now().hour < 7)) %} amoled
+      {% elif ((now().hour < 19) or (now().hour > 7)) %} vintage
+      {% else %} default {% endif %}

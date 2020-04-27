@@ -7,3 +7,4 @@ camera:
   platform: ffmpeg
   name: BackDoor
   input: !secret BackDoorCam
+

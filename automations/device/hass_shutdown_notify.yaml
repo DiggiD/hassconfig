@@ -1,0 +1,11 @@
+alias: Shutdown Notification
+initial_state: 'on'
+id: 34d0d19e-a535-4067-812d-5b9f071ccfc1
+trigger:
+  platform: homeassistant
+  event: shutdown
+action:
+  service: ifttt.trigger
+  data:
+    event: Hass.io
+    value1: '!!OFFLINE!!'

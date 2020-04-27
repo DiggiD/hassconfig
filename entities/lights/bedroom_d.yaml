@@ -1,0 +1,10 @@
+---
+# Light group: D's Bedroom
+#
+# https://www.home-assistant.io/integrations/light.group/
+#
+platform: group
+name: bedroom_d
+entities:
+  - light.d_s_lantern
+  - light.wled_backlight

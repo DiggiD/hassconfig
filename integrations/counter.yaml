@@ -1,0 +1,4 @@
+counter:
+  pappy_loo_trips:
+    step: 1
+    restore: true

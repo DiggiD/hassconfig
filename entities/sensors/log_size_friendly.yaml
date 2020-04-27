@@ -1,0 +1,18 @@
+---
+# The template sensor platform.
+# Using it for extracting host device parameters.
+#
+# https://www.home-assistant.io/integrations/template/
+#
+platform: template
+sensors:
+  log_size:
+    friendly_name: Log Size
+    unit_of_measurement: 'KiB'
+    value_template: >-
+      {% set size = state_attr('sensor.home_assistant_log', 'bytes') %}
+      {% if size != None %}
+        {{ (size / 1024) | round }}
+      {% else %}
+        unknown
+      {% endif %}

@@ -1,0 +1,4 @@
+---
+platform: telegram
+name: d
+chat_id: !secret tgram_chatid

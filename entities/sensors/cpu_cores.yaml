@@ -1,0 +1,11 @@
+---
+# The command line sensor platform.
+# Using it for extracting host device parameters.
+#
+# https://www.home-assistant.io/integrations/template/
+#
+platform: command_line
+name: CPU Cores
+scan_interval: 86400
+command: >-
+  grep 'model name' /proc/cpuinfo | wc -l

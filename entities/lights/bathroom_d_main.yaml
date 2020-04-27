@@ -1,0 +1,13 @@
+---
+# Light: D's bathroom light - Main
+#
+# https://www.home-assistant.io/integrations/light.group/
+#
+platform: mqtt
+name: "Loo Main Light"
+state_topic: "stat/tmta-d_wc1/POWER"
+command_topic: "cmnd/tmta-d_wc1/POWER"
+#state_value_template: '{{ value_json["POWER"] }}'
+payload_on: "ON"
+payload_off: "OFF"
+qos: 1

@@ -1,0 +1,7 @@
+---
+# The ffmpeg camera platform allows you to use an ip camera in Home Assistant.
+#
+# https://www.home-assistant.io/integrations/ffmpeg/
+#
+ffmpeg:
+  ffmpeg_bin: /usr/bin/ffmpeg

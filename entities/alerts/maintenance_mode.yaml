@@ -1,0 +1,9 @@
+maintenance_mode_alert:
+  name: Maintenance Mode has been on for a long time
+  done_message: Maintenance Mode de-activated
+  entity_id: input_boolean.maintenance_mode
+  repeat:
+    - 60
+  skip_first: true
+  notifiers:
+    - d

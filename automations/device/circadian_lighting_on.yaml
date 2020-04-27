@@ -1,0 +1,20 @@
+alias: Circadian Enabled
+initial_state: 'on'
+id: cf8dc2c6-5295-41b0-90e5-fcba50fbad7e
+trigger:
+  - platform: numeric_state
+    entity_id: sun.sun
+    value_template: "{{ state.attributes.elevation }}"
+  # Can be a positive or negative number
+    below: 45.0
+  - platform: state
+    entity_id: sensor.darkoutside
+    to: 'true'
+condition:
+  condition: state
+  entity_id: switch.circadian_lighting_circadian_lighting
+  state: 'off'
+action:
+  - delay: 00:01
+  - service: homeassistant.turn_on
+    entity_id: switch.circadian_lighting_circadian_lighting

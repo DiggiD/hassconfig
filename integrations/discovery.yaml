@@ -1,0 +1,7 @@
+---
+# The discovery component enables a set of additional capabilities to manage and
+# discover certain parts of Home Assistant straight from the frontend.
+#
+# https://www.home-assistant.io/integrations/discovery/
+#
+discovery: ~

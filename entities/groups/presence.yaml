@@ -1,0 +1,13 @@
+d_presence:
+    entities:
+      - device_tracker.ds_iphone
+      - device_tracker.iphone_d
+g_presence:
+  entities:
+    - device_tracker.gs_iphone
+    - device_tracker.iphone_g
+presence:
+  entities:
+    - group.d_presence
+    - group.g_presence
+    - person.pappy

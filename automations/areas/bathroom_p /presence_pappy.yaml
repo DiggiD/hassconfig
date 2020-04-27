@@ -1,0 +1,10 @@
+id: bd3a7653-98ab-483c-bdd4-c06e54cc625d
+initial_state: 'on'
+alias: Count Pappy's Loo Trips
+trigger:
+  platform: state
+  entity_id: device_tracker.tmta_pappy_wc1
+  to: 'home'
+action:
+  service: counter.increment
+  entity_id: counter.pappy_loo_trips

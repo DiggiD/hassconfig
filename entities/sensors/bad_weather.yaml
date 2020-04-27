@@ -1,0 +1,14 @@
+---
+# The template sensor platform.
+# report weather conditions
+#
+# https://www.home-assistant.io/integrations/template/
+#
+platform: template
+sensors:
+  bad_weather:
+    value_template: >-
+      {% if state_attr('weather.rdk', 'temperature')|int > 38 %} heat_wave
+      {% elif ((state_attr('weather.rdk', 'temperature')|int < 25) and (state_attr('weather.rdk', 'humidity')|int > 99)
+        and (state_attr('weather.rdk', 'wind_speed')|int > 40)) %} heavy_rain
+      {% else %} {{(states("weather.rdk"))}} {% endif %}

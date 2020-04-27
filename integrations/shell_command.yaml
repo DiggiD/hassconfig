@@ -1,0 +1,9 @@
+---
+# The shell_command integration allows users to specify a sequence of actions to be
+# executed by Home Assistant from the command line
+#
+#
+#
+# https://www.home-assistant.io/integrations/script/
+#
+shell_command: !include_dir_merge_named ../shell

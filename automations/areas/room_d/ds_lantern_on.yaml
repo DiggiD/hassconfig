@@ -1,0 +1,21 @@
+alias: sunset
+initial_state: 'on'
+id: 886b3471-42d1-446d-a8b2-c93e490cdafa
+trigger:
+  - platform: numeric_state
+    entity_id: sun.sun
+    value_template: "{{ state.attributes.elevation }}"
+    # Can be a positive or negative number
+    below: 5.0
+  - platform: state
+    entity_id: sensor.dark_outside
+    to: 'true'
+  - platform: time
+    at: '19:00:00'
+condition:
+  condition: state
+  entity_id: light.d_s_lantern
+  state: 'off'
+action:
+  - service: homeassistant.turn_on
+    entity_id: light.d_s_lantern

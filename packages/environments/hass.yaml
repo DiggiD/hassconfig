@@ -9,6 +9,7 @@ homeassistant:
   auth_providers:
     - type: homeassistant
 
+
 sun:
 sensor:
   - platform: moon

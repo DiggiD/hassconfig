@@ -1,0 +1,4 @@
+notify:
+  sequence:
+    - service: script.message
+      data_template: !include ../extras/notifier.yaml
