@@ -1,0 +1,17 @@
+script:
+  dropbox_sync:
+    alias: Dropbox Backup
+    sequence:
+      - service: homeassistant.turn_on
+        entity_id: input_boolean.maintenance_mode
+      - service: shell_command.dropbox_sync
+      - service: persistent_notification.create
+        data:
+          notification_id: "Backup_alert"
+          title: "Backup-FIX THIS!!!!!!"
+          message: "Hassio - Dropbox Sync In Progress"
+
+shell_command:
+  dropbox_sync: /bin/bash -c "/config/extras/shell/dropbox_uploader.sh -s upload /root/* /full_backup"
+
+# data: {"addon":"7be23ff5_dropbox_sync","input":{"command":"all"}}
