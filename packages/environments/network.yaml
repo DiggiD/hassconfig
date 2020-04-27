@@ -23,7 +23,12 @@ device_tracker:
   
   # - platform: bluetooth_tracker
   # - platform: bluetooth_le_tracker
-  
+
+  # - platform: tplink_router
+  #   host: 192.168.0.1
+  #   username: admin
+  #   password: !secret tplink_router_password
+
   - platform: iphonedetect
     consider_home: 0:5
     hosts:
