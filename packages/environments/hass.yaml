@@ -31,7 +31,7 @@ python_script:
 updater:
 
 recorder:
-  db_url: mysql://rkhome:2a47655b-6d1b-4cee-bfbe-baf815c355d0@core-mariadb/homeassistant?charset=utf8
+  db_url: !secret mariadb_url
   purge_keep_days: 3
   purge_interval: 1
 
