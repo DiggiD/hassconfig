@@ -38,7 +38,7 @@ script:
           title: "Hass.io"
           message: "HASS Config is being Checked!"
       - delay: 00:00:02
-      - service: config_check.run
+      - service: homeassistant.check_config
       - service: script.notify
         data:
           no_say: 1
