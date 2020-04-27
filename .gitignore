@@ -23,6 +23,7 @@ tts
 .ios.conf
 .spotify-token-cache
 .uuid
+.pip_progress
 core
 html5_push_registrations.conf
 ip_bans.yaml
@@ -52,3 +53,4 @@ secrets.yaml
 # Specific keeps
 # !.gitkeep
 !.gitignore
+
