@@ -198,13 +198,8 @@ sensor:
         column: 'value'
         unit_of_measurement: GB
 
-  # - platform: template
-  #   sensors:
-  #     database_size:
-  #       friendly_name: Database Size
-  #       unit_of_measurement: 'MiB'
-  #       value_template: >-
-  #         {{ states('sensor.home_assistant_v2_db') | round }}
+  - platform: template
+    sensors:
       log_size:
         friendly_name: Log Size
         unit_of_measurement: 'KiB'
