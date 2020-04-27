@@ -22,7 +22,7 @@ zone:
   icon: mdi:account-multiple
 
 config:
-# config_check:
+breaking_changes:
 zeroconf:
 discovery:
 system_health:
