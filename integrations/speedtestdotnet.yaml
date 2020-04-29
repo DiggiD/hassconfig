@@ -6,7 +6,7 @@
 #
 speedtestdotnet:
   scan_interval:
-    minutes: 15
+    minutes: 30
   monitored_conditions:
     - ping
     - download
