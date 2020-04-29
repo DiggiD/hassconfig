@@ -14,3 +14,22 @@ recorder:
 
   # How often (in days) the purge task runs
   purge_interval: 1
+
+  # Ensure you are keeping only what you need to keep DB small
+  include:    # Include everything you graph and will want to see later
+    domains:
+      - sensor
+      - binary_sensor
+      - switch
+      - light
+           
+  exclude:    # Eliminate anything that you never graph or refer back to
+    domains:
+      - automation
+      - updater
+    entities:
+      - sun.sun
+      - sensor.time
+      - sensor.date_time_iso # Don't record date and time
+      - sensor.yr_symbol # Ignore this as well
+      - group.weather # Don't save weather
