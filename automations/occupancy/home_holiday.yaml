@@ -1,0 +1,14 @@
+alias: Occupancy - Holiday Mode
+initial_state: 'on'
+id: d53be267-ecd9-4d29-8ec2-7e31a08c93c6
+trigger:
+  platform: state
+  entity_id: input_boolean.away_mode
+  to: 'on'
+  for:
+    hours: 24
+action:
+  - service: homeassistant.turn_on
+    entity_id: input_boolean.holiday_mode
+  - service: homeassistant.turn_off
+    entity_id: input_boolean.away_mode

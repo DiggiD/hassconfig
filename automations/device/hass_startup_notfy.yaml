@@ -8,4 +8,4 @@ action:
   service: ifttt.trigger
   data:
     event: Hass.io
-    value1: 'I am Up!'
+    value1: ' I am Up! '

@@ -1,0 +1,16 @@
+alias: Occupancy - Nobody home
+initial_state: 'on'
+id: 15d1905d-a998-403d-9864-febcc3fc8b15
+trigger:
+  platform: state
+  entity_id: sensor.home_presence
+  to: 'Unoccupied'
+  for:
+    hours: 3
+action:
+  - service: homeassistant.turn_off
+    entity_id:
+      - group.all_lights
+  - service: homeassistant.turn_on
+    entity_id:
+      - input_boolean.away_mode
