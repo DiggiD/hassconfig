@@ -2,8 +2,8 @@ alias: Shutdown Notification
 initial_state: 'on'
 id: f7290ebb-c066-4bf5-8692-8c31187f2b78
 trigger:
-  platform: event
-  event: homeassistant.restart
+  platform: homeassistant
+  event: shutdown
 action:
   service: ifttt.trigger
   data:
