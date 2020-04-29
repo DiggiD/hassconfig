@@ -3,7 +3,6 @@
 #
 # https://www.home-assistant.io/integrations/ffmpeg/
 #
-
 platform: ffmpeg
 name: backdoorcam
 input: !secret BackDoorCam

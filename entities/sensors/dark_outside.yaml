@@ -8,5 +8,5 @@ platform: template
 sensors:
   dark_outside:
     value_template: >-
-      {% if (states.sun.sun.attributes.elevation|int < 3) %}true
+      {% if (states.sun.sun.attributes.elevation|int < 5) %}true
       {% else %} false {% endif %}
