@@ -2,11 +2,6 @@ alias: sunset
 initial_state: 'on'
 id: 886b3471-42d1-446d-a8b2-c93e490cdafa
 trigger:
-  - platform: numeric_state
-    entity_id: sun.sun
-    value_template: "{{ state.attributes.elevation }}"
-    # Can be a positive or negative number
-    below: 10.0
   - platform: state
     entity_id: sensor.dark_outside
     to: 'true'

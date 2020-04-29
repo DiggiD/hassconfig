@@ -1,12 +1,7 @@
-alias: sleep
+alias: sleep lantern
 initial_state: 'on'
 id: aab0e4cc-9c58-420a-a61d-42fe53516e17
 trigger:
-  - platform: numeric_state
-    entity_id: sun.sun
-    value_template: "{{ state.attributes.elevation }}"
-    # Can be a positive or negative number
-    above: 10.0
   - platform: time
     at: '00:00:00'
 condition:
