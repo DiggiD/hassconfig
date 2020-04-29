@@ -1,0 +1,5 @@
+ibatteries_g:
+  entities:
+    - device_tracker.g_s_iphone_battery_state
+    - device_tracker.gsapplewatch_battery_state
+    - device_tracker.g_s_macbook_air_battery_state

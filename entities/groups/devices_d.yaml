@@ -1,0 +1,6 @@
+idevices_d:
+  entities:
+    - device_tracker.ds_iphone
+    - device_tracker.ds_ipad
+    - device_tracker.ds_macinposh
+    - device_tracker.ds_macposhpro

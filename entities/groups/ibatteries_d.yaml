@@ -1,0 +1,6 @@
+ibatteries_d:
+  entities:
+    - device_tracker.ds_iphone_battery_state
+    - device_tracker.ds_ipad_battery_state
+    - device_tracker.ds_macinposh_battery_state
+    - device_tracker.ds_macposhpro_battery_state
