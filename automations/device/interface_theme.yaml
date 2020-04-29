@@ -22,8 +22,8 @@ action:
   data_template:
     name: >-
       {% if is_state ('input_boolean.maintenance_mode' , 'on') %} dark_orange
-      {% elif not is_state('binary_sensor.updater','false') %} sublimination
-      {% elif not is_state('sensor.dark_outside','false') %} midnight
+      {% elif is_state('binary_sensor.updater','true') %} sublimination
+      {% elif is_state('sensor.dark_outside','false') %} midnight
       {% elif ((now().hour > 0) or (now().hour < 7)) %} amoled
       {% elif is_state('sensor.dark_outside','false') %} vintage
       {% else %} default {% endif %}
