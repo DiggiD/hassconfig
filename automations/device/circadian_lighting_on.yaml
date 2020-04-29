@@ -6,7 +6,7 @@ trigger:
     entity_id: sun.sun
     value_template: "{{ state.attributes.elevation }}"
   # Can be a positive or negative number
-    below: 10
+    below: 40
   - platform: state
     entity_id: sensor.darkoutside
     to: 'true'
