@@ -6,7 +6,7 @@ trigger:
     entity_id: sun.sun
     value_template: "{{ state.attributes.elevation }}"
   # Can be a positive or negative number
-    above: 45.0
+    above: 10
   - platform: state
     entity_id: sensor.darkoutside
     to: 'false'
@@ -16,5 +16,5 @@ condition:
   state: 'on'
 action:
   - delay: 00:01
-  - service: homeassistant.turn_off
+  - service: switch.turn_off
     entity_id: switch.circadian_lighting_circadian_lighting

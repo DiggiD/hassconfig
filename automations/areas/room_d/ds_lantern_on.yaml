@@ -6,7 +6,7 @@ trigger:
     entity_id: sun.sun
     value_template: "{{ state.attributes.elevation }}"
     # Can be a positive or negative number
-    below: 5.0
+    below: 10.0
   - platform: state
     entity_id: sensor.dark_outside
     to: 'true'
@@ -17,5 +17,5 @@ condition:
   entity_id: light.d_s_lantern
   state: 'off'
 action:
-  - service: homeassistant.turn_on
+  - service: light.turn_on
     entity_id: light.d_s_lantern

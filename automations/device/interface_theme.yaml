@@ -14,7 +14,7 @@ trigger:
 #        - alarm_control_panel.alarm
 #        {% if not is_state ('alarm_control_panel.alarm','disarmed') %} darkred
   - platform: time
-    at: '20:00:00'
+    at: '00:00:00'
   - platform: time
     at: '07:00:00'
 action:
@@ -22,8 +22,8 @@ action:
   data_template:
     name: >-
       {% if is_state ('input_boolean.maintenance_mode' , 'on') %} dark_orange
-      {% elif is_state('binary_sensor.updater','true') %} sublimination
-      {% elif is_state('sensor.dark_outside','true') %} midnight
+      {% elif not is_state('binary_sensor.updater','false') %} sublimination
+      {% elif not is_state('sensor.dark_outside','false') %} midnight
       {% elif ((now().hour > 0) or (now().hour < 7)) %} amoled
       {% elif is_state('sensor.dark_outside','false') %} vintage
       {% else %} default {% endif %}
