@@ -8,9 +8,8 @@ trigger:
   for:
     hours: 3
 action:
-  - service: homeassistant.turn_off
-    entity_id:
-      - group.all_lights
+  - service: lights.turn_off
+    entity_id: all
   - service: homeassistant.turn_on
     entity_id:
       - input_boolean.away_mode

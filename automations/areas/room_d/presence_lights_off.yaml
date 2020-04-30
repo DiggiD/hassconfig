@@ -3,8 +3,8 @@ initial_state: 'on'
 id: 03691639-0343-4727-a9ca-3c72b04c2e39
 trigger:
   platform: state
-  entity_id: group.presence_d
-  to: 'Away'
+  entity_id: group.d_presence
+  to: 'away'
 action:
   - service: light.turn_off
     entity_id: 

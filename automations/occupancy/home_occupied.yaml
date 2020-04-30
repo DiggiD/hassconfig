@@ -3,7 +3,7 @@ initial_state: 'on'
 id: 97b8a48b-4d0d-4cd1-a238-87282600c823
 trigger:
   platform: state
-  entity_id: group.presence
+  entity_id: sensor.home_presence
   to: 'Occupied'
 action:
   service: homeassistant.turn_off

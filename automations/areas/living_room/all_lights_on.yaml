@@ -7,9 +7,10 @@ trigger:
     to: 'true'
   - platform: time
     at: '19:00:00'
-#  condition: state
-#  entity_id: sensor.home_status
-#  to: 'Occupied'
+condition:
+  condition: state
+  entity_id: sensor.home_status
+  to: 'Occupied'
 action:
   - service: light.turn_on
     entity_id: group.livingroom
