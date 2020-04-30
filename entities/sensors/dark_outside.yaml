@@ -8,6 +8,5 @@ platform: template
 sensors:
   dark_outside:
     value_template: >-
-      {% if (states.sun.sun.attributes.elevation|int < 5) %} true
-      {% elif is_states('weather.rdk','cloudy') %} true
+      {% if (states.sun.sun.attributes.elevation|int < 10) %} true
       {% else %} false {% endif %}
