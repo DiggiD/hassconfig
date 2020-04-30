@@ -1,0 +1,15 @@
+platform: template
+sensors:
+  g_last_changed:
+    entity_id: sensor.time
+    value_template: >-
+      {%- set time = (as_timestamp(now()) - 
+      as_timestamp(states.person.g.last_changed)) | int %}
+      {%- set minutes = ((time % 3600) // 60) %}
+      {%- set hours = ((time % 86400) // 3600) %}
+      {%- set days = (time // 86400) %}
+      {% if time <= 60 %} 0m
+      {% elif time <= 3600 %} {{ minutes }}m
+      {% elif time <= 86400 %} {{ hours }}h
+      {% elif time > 86400 %} {{ days }}d 
+      {% endif %}
