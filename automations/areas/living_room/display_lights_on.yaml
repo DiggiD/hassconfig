@@ -1,4 +1,4 @@
-alias: Living Room Lights - ON
+alias: Display Lights - ON
 initial_state: 'on'
 id: a25d3a2d-3b0a-4a1b-935c-e8d7a1555c2d
 trigger:
@@ -10,10 +10,10 @@ trigger:
 condition:
   condition: state
   entity_id: sensor.home_status
-  to: 'Occupied'
+  state: 'Occupied'
 action:
   - service: light.turn_on
-    entity_id: group.livingroom
+    entity_id: light.display_light
 #    - service: script.notify
 #      data:
 #        call_dark_outside: 1

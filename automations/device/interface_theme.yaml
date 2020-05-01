@@ -21,8 +21,8 @@ action:
   service: frontend.set_theme
   data_template:
     name: >-
-      {% if is_state ('input_boolean.maintenance_mode','on') %} dark_orange
+      {% if is_state('input_boolean.maintenance_mode','on') %} dark_orange
+      {% elif ((now().hour > 0) and (now().hour < 7)) %} amoled
       {% elif is_state('binary_sensor.updater','true') %} sublimination
       {% elif is_state('sensor.dark_outside','true') %} midnight
-      {% elif ((now().hour > 0) and (now().hour < 7)) %} amoled
       {% else %} googlelight {% endif %}

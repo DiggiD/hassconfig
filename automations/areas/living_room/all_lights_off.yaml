@@ -13,6 +13,7 @@ trigger:
 action:
   - service: light.turn_off
     entity_id: group.livingroom
+
 #    - service: script.notify
 #      data:
 #        call_light_outside: 1
