@@ -16,10 +16,10 @@ device_tracker:
   #   username: admin
   #   password: !secret tplink_router_password
 
-  - platform: iphonedetect
-    consider_home: 0:5
-    hosts:
-      iphone_d: 192.168.0.115
-      iphone_g: 192.168.0.117
-    new_device_defaults:
-      track_new_devices: true
+  # - platform: iphonedetect
+  #   consider_home: 0:5
+  #   hosts:
+  #     iphone_d: 192.168.0.115
+  #     iphone_g: 192.168.0.117
+  #   new_device_defaults:
+  #     track_new_devices: true

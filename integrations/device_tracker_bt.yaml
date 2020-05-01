@@ -1,0 +1,4 @@
+device_tracker:
+  - platform: bluetooth_tracker
+    new_device_defaults:
+      track_new_devices: true
