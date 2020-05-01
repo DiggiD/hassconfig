@@ -8,9 +8,12 @@ trigger:
   - platform: time
     at: '19:00:00'
 condition:
-  condition: state
-  entity_id: sensor.home_status
-  state: 'Occupied'
+  - condition: state
+    entity_id: sensor.home_presence
+    state: 'Occupied'
+  - condition: state
+    entity_id: light.display_light
+    state: 'off'
 action:
   - service: light.turn_on
     entity_id: light.display_light

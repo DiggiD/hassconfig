@@ -1,0 +1,7 @@
+devices_tasmotas:
+  entities:
+    - device_tracker.tmta_dsac
+    - device_tracker.tmta_bar
+    - device_tracker.tmta_display
+    - device_tracker.tmta_dslantern
+    - device_tracker.tmta_pappy_wc1

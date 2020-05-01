@@ -11,5 +11,5 @@ circadian_lighting:
   # interval: 600
   max_colortemp: 6000  
   min_colortemp: 2000
-  sunset_offset: 01:00:00 
+  sunset_offset: 02:00:00 
   transition: 120

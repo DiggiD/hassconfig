@@ -4,3 +4,4 @@ devices_nmap_g:
     - device_tracker.gsipad_nmap
     - device_tracker.gsapplewatch_nmap
     - device_tracker.gsmacbookair_nmap
+    - device_tracker.gslaptop1_nmap
