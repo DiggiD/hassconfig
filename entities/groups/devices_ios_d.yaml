@@ -1,4 +1,4 @@
-idevices_d:
+devices_ios_d:
   entities:
     - device_tracker.ds_iphone
     - device_tracker.ds_ipad

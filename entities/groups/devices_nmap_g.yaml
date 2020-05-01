@@ -1,0 +1,6 @@
+devices_nmap_g:
+  entities:
+    - device_tracker.gsiphone_nmap
+    - device_tracker.gsipad_nmap
+    - device_tracker.gsapplewatch_nmap
+    - device_tracker.gsmacbookair_nmap

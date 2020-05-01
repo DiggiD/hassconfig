@@ -1,0 +1,5 @@
+devices_ios_g:
+  entities:
+    - device_tracker.gs_iphone
+    - device_tracker.gs_applewatch
+    - device_tracker.gs_macbookair

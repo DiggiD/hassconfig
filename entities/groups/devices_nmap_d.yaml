@@ -1,0 +1,6 @@
+devices_nmap_d:
+  entities:
+    - device_tracker.dsiphone_nmap
+    - device_tracker.dsipad_nmap
+    - device_tracker.dsmacinposh_nmap
+    - device_tracker.dsmacposhpro_nmap
