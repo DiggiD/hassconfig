@@ -6,5 +6,4 @@
 platform: group
 name: bedroom_d
 entities:
-  - light.d_s_lantern
   - light.wled_backlight

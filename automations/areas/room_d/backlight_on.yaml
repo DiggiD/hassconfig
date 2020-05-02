@@ -7,7 +7,7 @@ trigger:
   to: 'true'
 condition: 
   - condition: state
-    entity_id: group.d_presence
+    entity_id: person.d
     state: 'home'
   - condition: state
     entity_id: light.wled_backlight
