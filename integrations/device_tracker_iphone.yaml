@@ -1,6 +1,8 @@
 device_tracker:
   - platform: iphonedetect
-    consider_home: 0:5
+    consider_home: 0:01:00
+    new_device_defaults:
+      track_new_devices: true
     hosts:
-      iphone_d: 192.168.0.115
       iphone_g: 192.168.0.117
+      iphone_d: 192.168.0.115

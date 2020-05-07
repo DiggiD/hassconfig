@@ -2,24 +2,6 @@ device_tracker:
   - platform: nmap_tracker
     hosts: 192.168.0.0/24
     exclude: 192.168.0.200
-    home_interval: 60
-    interval_seconds: 120
     consider_home: 0:10
     new_device_defaults:
       track_new_devices: true
-  
-  # - platform: bluetooth_tracker
-  # - platform: bluetooth_le_tracker
-
-  # - platform: tplink_router
-  #   host: 192.168.0.1
-  #   username: admin
-  #   password: !secret tplink_router_password
-
-  # - platform: iphonedetect
-  #   consider_home: 0:5
-  #   hosts:
-  #     iphone_d: 192.168.0.115
-  #     iphone_g: 192.168.0.117
-  #   new_device_defaults:
-  #     track_new_devices: true

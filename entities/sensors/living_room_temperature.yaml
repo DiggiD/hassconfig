@@ -1,0 +1,19 @@
+---
+# Temperature sensor, based on a template.
+#
+# DHT11
+# I use this template to break out the attribute from the thermostat into
+# its own sensor.
+#
+# https://www.home-assistant.io/integrations/template/
+#
+
+platform: mqtt
+state_topic: “tele/tmta-display/SENSOR”
+name: "Living Room - Temperature"
+icon: mdi:thermometer
+availability_topic: “tele/tmta-display/STATE”
+unit_of_measurement: °C
+value_template: '{{ value_json.DHT.Temperature }}'
+payload_available: “Online”
+payload_not_available: “Offline”

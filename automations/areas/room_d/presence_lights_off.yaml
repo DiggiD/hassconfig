@@ -2,9 +2,16 @@ alias: D's Bedroom Lights - OFF (D's Room)
 initial_state: 'on'
 id: 03691639-0343-4727-a9ca-3c72b04c2e39
 trigger:
-  platform: state
-  entity_id: person.d
-  to: 'away'
+  - platform: state
+    entity_id: input_boolean.away_mode
+    to: 'true'
+  - platform: state
+    entity_id: input_boolean.holiday_mode
+    to: 'true'
+condition:
+  condition: state
+  entity_id: light.bedroom_d
+  state: 'on'
 action:
   - service: light.turn_off
     entity_id: 

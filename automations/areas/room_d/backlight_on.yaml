@@ -2,9 +2,12 @@ alias: Backlight - ON (D's Room)
 initial_state: 'on'
 id: a9993c48-4d15-48d9-86e9-b01ca45e49de
 trigger:
-  platform: state
-  entity_id: sensor.dark_outside
-  to: 'true'
+  - platform: state
+    entity_id: sensor.dark_outside
+    to: 'true'
+  - platform: state
+    entity_id: person.d
+    to: 'home'
 condition: 
   - condition: state
     entity_id: person.d
@@ -12,6 +15,9 @@ condition:
   - condition: state
     entity_id: light.wled_backlight
     state: 'off'
+  - condition: state
+    entity_id: sensor.dark_outside
+    state: 'true'
 action:
   - service: light.turn_on
     entity_id: light.wled_backlight

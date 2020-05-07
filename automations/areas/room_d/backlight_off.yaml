@@ -1,0 +1,17 @@
+alias: Backlight - OFF (D's Room)
+initial_state: 'on'
+id: 6668a1d5-fec5-43e5-84dc-6df7fe2458d3
+trigger:
+  platform: state
+  entity_id: person.d
+condition:
+  - condition: state
+    entity_id: light.wled_backlight
+    state: 'on'
+  - condition: state
+    entity_id: person.d
+    state: 'not_home'
+action:
+  - service: light.turn_off
+    entity_id: 
+      - light.wled_backlight

@@ -10,7 +10,7 @@ recorder:
   db_url: !secret mariadb_url
 
   # The number of days of history to keep in the recorder database
-  purge_keep_days: 3
+  purge_keep_days: 1
 
   # Ensure you are keeping only what you need to keep DB small
   include:    # Include everything you graph and will want to see later
@@ -21,8 +21,13 @@ recorder:
       - light
       - automation  
       - device_tracker  
+      - person
   exclude:    # Eliminate anything that you never graph or refer back to
     domains:
+      - zone
+      - group
+      - input_number
+      - iput_select
       - updater
       - weather # Don't save weather
     entities:

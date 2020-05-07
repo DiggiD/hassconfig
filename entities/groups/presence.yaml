@@ -1,14 +1,16 @@
 d_presence:
   entities:
     - device_tracker.iphone_d
-    - group.devices_ios_d
+    # - group.devices_ios_d
     - group.device_nmap_d
+    - device_tracker.dsiphone_bt
 
 g_presence:
   entities:
     - device_tracker.iphone_g
-    - group.devices_ios_g
+    # - group.devices_ios_g
     - group.devices_nmap_g
+    - device_tracker.gsiphone_bt
 
 presence:
   entities:
