@@ -1,0 +1,22 @@
+alias: Bar Light - ON
+initial_state: 'on'
+id: 03153f1c-0155-45b6-8556-6f38de2ba33e
+trigger:
+  - platform: state
+    entity_id: sensor.dark_outside
+    to: 'true'
+  - platform: time
+    at: '19:00:00'
+condition:
+  - condition: state
+    entity_id: sensor.home_presence
+    state: 'Occupied'
+  - condition: state
+    entity_id: light.bar_light
+    state: 'off'
+action:
+  - service: light.turn_on
+    entity_id: light.bar_light
+#    - service: script.notify
+#      data:
+#        call_dark_outside: 1

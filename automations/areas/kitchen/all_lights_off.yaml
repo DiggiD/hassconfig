@@ -1,0 +1,23 @@
+alias: Kitchen Lights - OFF
+initial_state: 'on'
+id: d0c1ecda-66ad-449f-bd60-94282bbc7efa
+trigger:
+  - platform: time
+    at: '21:30:00'
+  - platform: state
+    entity_id: sensor.dark_outsie
+    to: 'false'
+  - platform: state
+    entity_id: input_boolean.away_mode
+    to: 'true'
+condition:
+  condition: state
+  entity_id: light.kitchen
+  state: 'on'
+action:
+  - service: light.turn_off
+    entity_id: light.kitchen
+
+#    - service: script.notify
+#      data:
+#        call_light_outside: 1
