@@ -3,7 +3,7 @@ initial_state: 'on'
 id: a6dc79eb-c677-494b-ac13-4935c10318b7
 trigger:
   - platform: time
-    at: '21:00:00'
+    at: '21:30:00'
   - platform: state
     entity_id: sensor.dark_outsie
     to: 'false'
